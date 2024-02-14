@@ -1,2 +1,2 @@
 # Basics for AI
-**Author: Chaoyu (czhang759@wisc.edu)**  
+**Author: Chaoyu Zhang(czhang759@wisc.edu)**  
