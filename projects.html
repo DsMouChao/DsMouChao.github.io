@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Personal Website</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/projects.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="name">Chaoyu Zhang</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="resume.html">Resume</a>
+            <a href="academic.html">Academic</a>
+            <a href="projects.html" class="active">Projects</a>
+            <a href="hobbies.html">Hobbies</a>
+        </div>
+        <div class="nav-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <main class="projects-container">
+        <section class="projects-header">
+            <h1>Projects</h1>
+            <p>Explore my projects and research achievements</p>
+        </section>
+
+        <div class="projects-filter">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="ml">Machine Learning</button>
+            <button class="filter-btn" data-filter="optimization">Optimization</button>
+            <button class="filter-btn" data-filter="research">Research</button>
+        </div>
+
+        <div class="projects-grid">
+            <div class="project-card" data-category="optimization">
+                <div class="project-image">
+                    <img src="images/project-placeholder.jpg" alt="Project Preview">
+                </div>
+                <div class="project-content">
+                    <h3>Path Smoothing for Robotics</h3>
+                    <p class="project-tags">
+                        <span>Julia</span>
+                        <span>Ipopt</span>
+                        <span>Optimization</span>
+                    </p>
+                    <p class="project-description">
+                        A hybrid A* pathfinding and QCQP optimization model for smooth navigation paths in robotics.
+                    </p>
+                    <div class="project-links">
+                        <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                        <a href="#" class="project-link"><i class="fas fa-file-alt"></i> Paper</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="ml">
+                <div class="project-image">
+                    <img src="images/project-placeholder.jpg" alt="Project Preview">
+                </div>
+                <div class="project-content">
+                    <h3>Raindrop Removal Algorithm</h3>
+                    <p class="project-tags">
+                        <span>Python</span>
+                        <span>PyTorch</span>
+                        <span>Diffusion Models</span>
+                    </p>
+                    <p class="project-description">
+                        Advanced raindrop removal using Kolmogorov-Arnold Network and diffusion models for superior image quality.
+                    </p>
+                    <div class="project-links">
+                        <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                        <a href="#" class="project-link"><i class="fas fa-external-link-alt"></i> Demo</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card" data-category="research">
+                <div class="project-image">
+                    <img src="images/project-placeholder.jpg" alt="Project Preview">
+                </div>
+                <div class="project-content">
+                    <h3>CNN Architectures with SENet</h3>
+                    <p class="project-tags">
+                        <span>Python</span>
+                        <span>PyTorch</span>
+                        <span>CHTC</span>
+                    </p>
+                    <p class="project-description">
+                        Comparative analysis of CNN models enhanced with SENet, achieving significant improvements in accuracy.
+                    </p>
+                    <div class="project-links">
+                        <a href="#" class="project-link"><i class="fab fa-github"></i> Code</a>
+                        <a href="#" class="project-link"><i class="fas fa-file-alt"></i> Paper</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2024 Chaoyu Zhang. All rights reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/projects.js"></script>
+</body>
+</html> 

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Only One Chao Here - Chaos Grid</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      background-color: #00274C;
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      color: #FFCB05;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #001f3f;
+      padding: 1rem 2rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .nav-brand {
+      position: relative;
+    }
+
+    .nav-brand .name {
+      color: #FFCB05;
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      color: #FFCB05;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-links a.active {
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .chaos-grid {
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 200px);
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .chaos-item {
+      position: absolute;
+      color: #FFCB05;
+      font-size: 1.6rem;
+      font-weight: bold;
+      padding: 0.6rem 1.2rem;
+      border-radius: 10px;
+      text-align: center;
+      white-space: nowrap;
+      animation: float 6s ease-in-out infinite;
+      cursor: pointer;
+      transition: transform 0.3s, background-color 0.3s;
+    }
+
+    .chaos-item:hover {
+      transform: scale(1.2) rotate(var(--rotate)) !important;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(var(--rotate)); }
+      50% { transform: translateY(-15px) rotate(var(--rotate)); }
+      100% { transform: translateY(0) rotate(var(--rotate)); }
+    }
+
+    .highlight {
+      background-color: rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+    }
+
+    .paused .chaos-item {
+      animation-play-state: paused !important;
+    }
+
+    /* 中间立体 CHAO 字 */
+    .center-box {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 15rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #FFD700, #FFCB05);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow:
+        2px 2px #336699,
+        4px 4px rgba(0, 51, 102, 0.3),
+        6px 6px rgba(0, 51, 102, 0.2);
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background-color: #001f3f;
+      color: #FFCB05;
+      font-size: 1rem;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .social-links {
+      margin-bottom: 1rem;
+    }
+
+    .social-links a {
+      margin: 0 8px;
+      color: #FFCB05;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: #fff;
+    }
+
+    .hero-content {
+      text-align: center;
+      padding-top: 50px; /* 减小顶部内边距 */
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-content h1 {
+      font-size: 4rem;
+      color: #00274C;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 0.8rem 1rem;
+      }
+
+      .nav-brand .name {
+        font-size: 1.8rem;
+      }
+
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: #001f3f;
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        font-size: 1.1rem;
+        padding: 0.5rem 0;
+      }
+
+      .center-box {
+        font-size: 8rem;
+      }
+
+      .chaos-grid {
+        height: calc(100vh - 150px);
+      }
+
+      .chaos-item {
+        font-size: 1.2rem;
+        padding: 0.4rem 0.8rem;
+      }
+
+      footer {
+        padding: 1rem;
+      }
+
+      .social-links a {
+        font-size: 1.3rem;
+        margin: 0 6px;
+      }
+    }
+
+    /* 添加汉堡菜单按钮 */
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      color: #FFCB05;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="name">Chaoyu Zhang</span>
+    </div>
+    <div class="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="resume.html">Resume</a>
+      <a href="academic.html">Academic</a>
+      <a href="projects.html">Projects</a>
+      <a href="hobbies.html">Hobbies</a>
+    </div>
+  </nav>
+
+  <!-- 中间大立体 CHAO 字 -->
+  <div class="center-box">CHAO</div>
+
+  <div class="chaos-grid" id="chaos-grid"></div>
+
+  <footer>
+    <div class="social-links">
+      <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+    </div>
+    <p>&copy; 2025 Chaoyu Zhang. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // 添加汉堡菜单交互
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.querySelector('.menu-toggle');
+      const navLinks = document.querySelector('.nav-links');
+      
+      menuToggle.addEventListener('click', function() {
+        navLinks.classList.toggle('active');
+      });
+
+      // 点击导航链接时关闭菜单
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+          navLinks.classList.remove('active');
+        });
+      });
+
+      // 点击页面其他地方时关闭菜单
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.navbar')) {
+          navLinks.classList.remove('active');
+        }
+      });
+    });
+
+    const phrases = [
+      "Only One Chao Here", "只有一个超在这里", "Solo hay un Chao aquí", "Es gibt nur einen Chao hier",
+      "여기에 오직 한 명의 차오가 있습니다", "ここに唯一のチャオがいます", "Il n'y a qu'un seul Chao ici",
+      "В этом мире только один Чао", "Explore", "探索", "探索する", "탐험하기", "Explorer",
+      "Explorar", "Entdecken", "进入", "只此一超，别无分号"
+    ];
+
+    const exploreKeywords = ["Explore", "探索", "探索する", "탐험하기", "Explorer", "Explorar", "Entdecken", "进入"];
+    const grid = document.getElementById('chaos-grid');
+    const count = 30;
+    let paused = false;
+    let currentHighlight = null;
+
+    for (let i = 0; i < count; i++) {
+      const text = phrases[Math.floor(Math.random() * phrases.length)];
+      const item = document.createElement('div');
+      item.className = 'chaos-item';
+      item.textContent = text;
+      const rotate = Math.floor(Math.random() * 360 - 180);
+      item.style.setProperty('--rotate', `${rotate}deg`);
+
+      // 随机位置，避开 40%-60% 中心区域
+      let x = Math.random() * 100;
+      let y = Math.random() * 100;
+      while (x > 42 && x < 58 && y > 42 && y < 58) {
+        x = Math.random() * 100;
+        y = Math.random() * 100;
+      }
+      item.style.left = `calc(${x}% - 60px)`;
+      item.style.top = `calc(${y}% - 30px)`;
+
+      grid.appendChild(item);
+    }
+
+    grid.addEventListener('click', function (e) {
+      const target = e.target.closest('.chaos-item');
+      if (target) {
+        const text = target.textContent.trim();
+        if (exploreKeywords.includes(text)) {
+          window.location.href = 'resume.html';
+          return;
+        }
+        if (currentHighlight) currentHighlight.classList.remove('highlight');
+        target.classList.add('highlight');
+        currentHighlight = target;
+        if (!paused) {
+          grid.classList.add('paused');
+          paused = true;
+        } else {
+          grid.classList.remove('paused');
+          paused = false;
+          target.classList.remove('highlight');
+          currentHighlight = null;
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hobbies - Personal Website</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/hobbies.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map {
+      width: 100%;
+      height: 500px;
+      border-radius: 15px;
+      margin-top: 20px;
+      border: 2px solid #FFCB05;
+    }
+
+    .map-placeholder {
+      text-align: center;
+      color: #666;
+      padding: 50px;
+    }
+
+    @media (max-width: 768px) {
+      .hobby-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        overflow-y: auto;
+        max-height: calc(100vh - 200px);
+        padding: 1rem;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .hobby-card {
+        width: 100%;
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="name">Chaoyu Zhang</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="resume.html">Resume</a>
+      <a href="academic.html">Academic</a>
+      <a href="projects.html">Projects</a>
+      <a href="hobbies.html">Hobbies</a>
+    </div>
+    <div class="nav-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+  </nav>
+
+  <main class="hobbies-container">
+    <section class="hobbies-header">
+      <h1>Hobbies</h1>
+      <p>Explore my interests and lifestyle</p>
+    </section>
+
+    <section class="hobbies-grid">
+      <a href="photography.html" class="hobby-card">
+        <div class="hobby-icon"><i class="fas fa-camera"></i></div>
+        <h3>Photography</h3><p>Explore my photography work.</p>
+      </a>
+      <a href="poem.html" class="hobby-card">
+        <div class="hobby-icon"><i class="fas fa-pen-nib"></i></div>
+        <h3>Poem Writing</h3><p>Read my poetry and translations.</p>
+      </a>
+      <a href="hiphopdancing.html" class="hobby-card">
+        <div class="hobby-icon"><i class="fas fa-music"></i></div>
+        <h3>Hip-Hop Dance</h3><p>See my dance journey and performances.</p>
+      </a>
+      <a href="cooking.html" class="hobby-card">
+        <div class="hobby-icon"><i class="fas fa-utensils"></i></div>
+        <h3>Food Cooking</h3><p>Explore my favorite dishes and recipes.</p>
+      </a>
+    </section>
+    
+    <section class="travel-section">
+      <h2>Travel Footprint</h2>
+      <p>These are some of the amazing places I have been to:</p>
+      <div id="map"></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="social-links">
+      <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+    </div>
+    <p>&copy; 2024 Chaoyu Zhang. All rights reserved.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/hobbies.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+  <script>
+    const map = L.map('map', {
+      maxBounds: [[-85, -180], [85, 180]],
+      maxBoundsViscosity: 1.0
+    }).setView([34.7466, 113.6254], 3);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    const places = [
+      { name: "Zhengzhou (Home)", lat: 34.7466, lon: 113.6254 },
+      { name: "Beijing", lat: 39.9042, lon: 116.4074 },
+      { name: "Shanghai", lat: 31.2304, lon: 121.4737 },
+      { name: "Hohhot", lat: 40.8427, lon: 111.7492 },
+      { name: "Suzhou", lat: 31.2989, lon: 120.5853 },
+      { name: "Chengdu", lat: 30.5728, lon: 104.0668 },
+      { name: "Shangri-La", lat: 27.8252, lon: 99.7055 },
+      { name: "Hong Kong", lat: 22.3193, lon: 114.1694 },
+      { name: "Guilin", lat: 25.2742, lon: 110.2951 },
+      { name: "Xiamen", lat: 24.4798, lon: 118.0894 },
+      { name: "Kunming", lat: 25.0389, lon: 102.7183 },
+      { name: "Dali", lat: 25.6939, lon: 100.1796 },
+      { name: "Lijiang", lat: 26.872, lon: 100.238 },
+      { name: "Xi'an", lat: 34.3416, lon: 108.9398 },
+      { name: "Dunhuang", lat: 40.1421, lon: 94.6619 },
+      { name: "Tibet (Lhasa)", lat: 29.6520, lon: 91.1721 },
+      { name: "Singapore", lat: 1.3521, lon: 103.8198 },
+      { name: "Los Angeles", lat: 34.0522, lon: -118.2437 },
+      { name: "New York", lat: 40.7128, lon: -74.0060 },
+      { name: "Philadelphia", lat: 39.9526, lon: -75.1652 },
+      { name: "Washington D.C.", lat: 38.9072, lon: -77.0369 },
+      { name: "Great Smoky Mountains", lat: 35.6118, lon: -83.4895 },
+      { name: "Las Vegas", lat: 36.1699, lon: -115.1398 },
+      { name: "Grand Canyon National Park", lat: 36.1069, lon: -112.1129 },
+      { name: "Antelope Canyon", lat: 36.8619, lon: -111.3743 },
+      { name: "Bryce Canyon National Park", lat: 37.5930, lon: -112.1871 },
+      { name: "Yellowstone National Park", lat: 44.4280, lon: -110.5885 },
+      { name: "Alaska", lat: 64.2008, lon: -149.4937 },
+      { name: "Honolulu, Hawaii", lat: 21.3069, lon: -157.8583 },
+      { name: "Orlando Disney World", lat: 28.3852, lon: -81.5639 },
+      { name: "Osaka, Japan", lat: 34.6937, lon: 135.5023 },
+      { name: "Kyoto, Japan", lat: 35.0116, lon: 135.7681 },
+      { name: "Nara, Japan", lat: 34.6851, lon: 135.8048 },
+      { name: "Tokyo, Japan", lat: 35.6762, lon: 139.6503 },
+      { name: "Madison, Wisconsin", lat: 43.0731, lon: -89.4012 },
+      { name: "Milwaukee, Wisconsin", lat: 43.0389, lon: -87.9065 },
+      { name: "Columbus, Ohio", lat: 39.9612, lon: -82.9988 },
+      { name: "Cincinnati, Ohio", lat: 39.1031, lon: -84.5120 },
+      { name: "Jinan, China", lat: 36.6512, lon: 117.1201 },
+      { name: "Weihai, China", lat: 37.5131, lon: 122.1205 },
+      { name: "Chicago", lat: 41.8781, lon: -87.6298 },
+      { name: "Ann Arbor, Michigan", lat: 42.2808, lon: -83.7430 }
+    ];
+
+    places.forEach(place => {
+      L.marker([place.lat, place.lon]).addTo(map)
+        .bindPopup(`<b>${place.name}</b>`);
+    });
+  </script>
+</body>
+
+</html>

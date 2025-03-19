@@ -1,0 +1,191 @@
+.resume-container {
+    max-width: 1200px;
+    margin: 80px auto 40px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.resume-header {
+    text-align: center;
+    padding: 40px 0;
+    background: linear-gradient(135deg, var(--michigan-blue) 0%, #003366 100%);
+    color: white;
+    border-radius: 10px 10px 0 0;
+    margin: -20px -20px 20px -20px;
+}
+
+.profile-info h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--michigan-maize);
+}
+
+.profile-info .title {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.contact-info p {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.resume-section {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.resume-section:hover {
+    transform: translateY(-5px);
+}
+
+.resume-section h2 {
+    color: var(--michigan-blue);
+    border-bottom: 2px solid var(--michigan-maize);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.experience-item, .education-item {
+    margin-bottom: 30px;
+}
+
+.experience-item h3, .education-item h3 {
+    color: var(--michigan-blue);
+    margin-bottom: 5px;
+}
+
+.company, .school {
+    color: #666;
+    font-weight: 500;
+}
+
+.date {
+    color: #888;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.skill-category h3 {
+    color: var(--michigan-blue);
+    margin-bottom: 15px;
+}
+
+.skills-list {
+    list-style: none;
+    padding: 0;
+}
+
+.skills-list li {
+    background-color: white;
+    padding: 8px 15px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-right: 10px;
+    border: 1px solid var(--michigan-blue);
+    transition: all 0.3s ease;
+}
+
+.skills-list li:hover {
+    background-color: var(--michigan-blue);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .resume-container {
+        padding: 0;
+        margin-top: 60px;
+        border-radius: 0;
+    }
+
+    .resume-header {
+        padding: 2rem 1rem;
+        margin: 0;
+        border-radius: 0;
+        background: linear-gradient(135deg, var(--michigan-blue) 0%, #003366 100%);
+    }
+
+    .profile-info h1 {
+        font-size: 2.2rem;
+        margin-bottom: 0.8rem;
+        color: var(--michigan-maize);
+    }
+
+    .profile-info .title {
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .contact-info p {
+        width: 100%;
+        justify-content: center;
+        padding: 0.5rem;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        margin: 0;
+    }
+
+    .contact-info i {
+        font-size: 1.2rem;
+        margin-right: 0.5rem;
+    }
+
+    .resume-section {
+        margin: 1rem;
+        padding: 1.2rem;
+        border-radius: 8px;
+    }
+
+    .resume-section h2 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+
+    .experience-item, .education-item {
+        margin-bottom: 1.5rem;
+    }
+
+    .experience-item h3, .education-item h3 {
+        font-size: 1.2rem;
+    }
+
+    .company, .school {
+        font-size: 1rem;
+    }
+
+    .date {
+        font-size: 0.9rem;
+    }
+} 

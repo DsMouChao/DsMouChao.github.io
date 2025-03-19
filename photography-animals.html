@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Photography - Chaoyu Zhang</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .photo-gallery-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            overflow: hidden;
+        }
+
+        .photo-grid {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            animation: scrollPhotos 40s linear infinite;
+        }
+
+        .photo-grid.paused {
+            animation-play-state: paused;
+        }
+
+        .photo-grid.fast {
+            animation-duration: 15s;
+        }
+
+        .photo-card {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            flex-shrink: 0;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .photo-card:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollPhotos {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-300px * 9 - 1.5rem * 9));
+            }
+        }
+
+        .photo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+            opacity: 0;
+        }
+
+        .photo-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: #fff;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-card:hover .photo-info {
+            transform: translateY(0);
+        }
+
+        .photo-card:hover .photo-image {
+            transform: scale(1.05);
+        }
+
+        .photo-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .photo-meta {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .photo-meta i {
+            margin-right: 0.5rem;
+        }
+
+        /* 当前页面放大效果 */
+        .photo-card.expanded {
+            position: relative;
+            width: 600px;
+            height: 600px;
+            z-index: 1000;
+            opacity: 1;
+            animation: none;
+            margin: 0 auto;
+        }
+
+        .photo-card.expanded .photo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .photo-card.expanded .photo-info {
+            display: none;
+        }
+
+        .photo-card.dimmed {
+            opacity: 0.3;
+            transform: scale(0.8);
+        }
+
+        .nav-buttons {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            display: flex;
+            gap: 1rem;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            padding: 0.8rem 1.5rem;
+            background: #00274C;
+            color: #FFCB05;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-btn:hover {
+            background: #003d6b;
+        }
+
+        .photo-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .photo-image.loaded {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .photo-grid {
+                animation: none;
+                overflow-x: auto;
+                padding-bottom: 1rem;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .photo-card {
+                width: 250px;
+                height: 250px;
+            }
+
+            .photo-card.expanded {
+                width: 90vw;
+                height: 90vw;
+            }
+
+            .nav-buttons {
+                top: 1rem;
+                left: 1rem;
+                flex-direction: column;
+            }
+
+            .nav-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="name">Chaoyu Zhang</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="resume.html">Resume</a>
+            <a href="academic.html">Academic</a>
+            <a href="projects.html">Projects</a>
+            <a href="hobbies.html" class="active">Hobbies</a>
+        </div>
+        <div class="nav-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <div class="nav-buttons">
+        <a href="photography.html" class="nav-btn">
+            <i class="fas fa-arrow-left"></i> Back to Categories
+        </a>
+        <a href="photography-portrait.html" class="nav-btn">
+            Next Category <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+
+    <main class="hero">
+        <div class="photo-gallery-container">
+            <div class="photo-grid" id="photoGrid">
+                <!-- Photo cards will be dynamically added here -->
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2024 Chaoyu Zhang. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const photoGrid = document.getElementById('photoGrid');
+            let allPhotos = [];
+            let touchStartX = 0;
+            let touchEndX = 0;
+            let isScrolling = false;
+
+            // 示例照片数据
+            const photos = [
+                {
+                    id: 1,
+                    title: "Lion Pride",
+                    location: "Serengeti National Park",
+                    date: "March 2024",
+                    camera: "Sony A7III",
+                    image: "images/photo1.jpg"
+                },
+                {
+                    id: 2,
+                    title: "Elephant Family",
+                    location: "Amboseli National Park",
+                    date: "February 2024",
+                    camera: "Sony A7III",
+                    image: "images/photo2.jpg"
+                },
+                {
+                    id: 3,
+                    title: "Giraffe",
+                    location: "Masai Mara",
+                    date: "January 2024",
+                    camera: "Sony A7III",
+                    image: "images/photo3.jpg"
+                },
+                {
+                    id: 4,
+                    title: "Penguin Colony",
+                    location: "Antarctica",
+                    date: "December 2023",
+                    camera: "Sony A7III",
+                    image: "images/photo1.jpg"
+                },
+                {
+                    id: 5,
+                    title: "Polar Bear",
+                    location: "Arctic Circle",
+                    date: "November 2023",
+                    camera: "Sony A7III",
+                    image: "images/photo2.jpg"
+                },
+                {
+                    id: 6,
+                    title: "Tiger",
+                    location: "Ranthambore National Park",
+                    date: "October 2023",
+                    camera: "Sony A7III",
+                    image: "images/photo3.jpg"
+                },
+                {
+                    id: 7,
+                    title: "Gorilla",
+                    location: "Virunga National Park",
+                    date: "September 2023",
+                    camera: "Sony A7III",
+                    image: "images/photo1.jpg"
+                },
+                {
+                    id: 8,
+                    title: "Dolphins",
+                    location: "Great Barrier Reef",
+                    date: "August 2023",
+                    camera: "Sony A7III",
+                    image: "images/photo2.jpg"
+                },
+                {
+                    id: 9,
+                    title: "Eagle",
+                    location: "Rocky Mountains",
+                    date: "July 2023",
+                    camera: "Sony A7III",
+                    image: "images/photo3.jpg"
+                }
+            ];
+
+            function createPhotoCard(photo) {
+                const card = document.createElement('div');
+                card.className = 'photo-card';
+                card.innerHTML = `
+                    <img src="${photo.image}" alt="${photo.title}" class="photo-image" loading="lazy">
+                    <div class="photo-info">
+                        <h3 class="photo-title">${photo.title}</h3>
+                        <p class="photo-meta">
+                            <i class="fas fa-map-marker-alt"></i> ${photo.location}
+                            <br>
+                            <i class="fas fa-calendar"></i> ${photo.date}
+                            <br>
+                            <i class="fas fa-camera"></i> ${photo.camera}
+                        </p>
+                    </div>
+                `;
+
+                // 添加点击事件
+                card.addEventListener('click', () => {
+                    expandPhoto(card);
+                });
+
+                return card;
+            }
+
+            function expandPhoto(card) {
+                // 停止滚动动画
+                photoGrid.classList.add('paused');
+
+                // 如果已经有照片被放大，先恢复其他照片
+                const expandedCard = document.querySelector('.photo-card.expanded');
+                if (expandedCard) {
+                    expandedCard.classList.remove('expanded');
+                    document.querySelectorAll('.photo-card.dimmed').forEach(c => {
+                        c.classList.remove('dimmed');
+                    });
+                }
+
+                // 放大当前照片
+                card.classList.add('expanded');
+                document.querySelectorAll('.photo-card:not(.expanded)').forEach(c => {
+                    c.classList.add('dimmed');
+                });
+
+                // 添加点击事件监听器来关闭放大效果
+                const closeExpanded = (e) => {
+                    if (e.target === card || e.target.closest('.photo-card') !== card) {
+                        card.classList.remove('expanded');
+                        document.querySelectorAll('.photo-card.dimmed').forEach(c => {
+                            c.classList.remove('dimmed');
+                        });
+                        photoGrid.classList.remove('paused');
+                        document.removeEventListener('click', closeExpanded);
+                    }
+                };
+
+                // 延迟添加事件监听器，避免立即触发
+                setTimeout(() => {
+                    document.addEventListener('click', closeExpanded);
+                }, 100);
+            }
+
+            // 添加触摸事件处理
+            photoGrid.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                isScrolling = true;
+            });
+
+            photoGrid.addEventListener('touchmove', (e) => {
+                if (!isScrolling) return;
+                touchEndX = e.touches[0].clientX;
+            });
+
+            photoGrid.addEventListener('touchend', () => {
+                if (!isScrolling) return;
+                isScrolling = false;
+
+                const swipeDistance = touchEndX - touchStartX;
+                if (Math.abs(swipeDistance) > 50) { // 最小滑动距离
+                    if (swipeDistance > 0) {
+                        // 向右滑动，加速
+                        photoGrid.classList.add('fast');
+                    } else {
+                        // 向左滑动，减速
+                        photoGrid.classList.remove('fast');
+                    }
+                }
+            });
+
+            // 加载所有照片
+            photos.forEach(photo => {
+                const card = createPhotoCard(photo);
+                photoGrid.appendChild(card);
+
+                // Add lazy loading for images
+                const img = card.querySelector('.photo-image');
+                img.addEventListener('load', () => {
+                    img.classList.add('loaded');
+                    card.classList.add('visible');
+                });
+            });
+
+            allPhotos = photos;
+        });
+    </script>
+</body>
+</html> 

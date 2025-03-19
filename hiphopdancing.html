@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hip Hop Dancing - Chaoyu Zhang</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: #f8f8f8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+            padding-top: 80px; /* 为导航栏留出空间 */
+        }
+
+        .dancing-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: calc(100vh - 80px - 60px); /* 减去导航栏和页脚的高度 */
+        }
+
+        .dancing-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-top: 1rem;
+        }
+
+        .dancing-title h1 {
+            font-size: 2.5rem;
+            color: #00274C;
+            margin-bottom: 1rem;
+        }
+
+        .dancing-title p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 宽高比 */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-info {
+            padding: 1rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-info h3 {
+            color: #00274C;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .video-info p {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            flex: 1;
+        }
+
+        .video-date {
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        .video-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .nav-button {
+            background: #00274C;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .nav-button:hover {
+            background: #004080;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .dancing-container {
+                padding: 1rem;
+            }
+
+            .dancing-title h1 {
+                font-size: 2rem;
+            }
+
+            .video-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="name">Chaoyu Zhang</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="resume.html">Resume</a>
+            <a href="academic.html">Academic</a>
+            <a href="projects.html">Projects</a>
+            <a href="hobbies.html" class="active">Hobbies</a>
+        </div>
+        <div class="nav-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <main>
+        <div class="dancing-container">
+            <div class="dancing-title">
+                <h1>Hip Hop Dancing</h1>
+                <p>My Dance Journey and Performances</p>
+            </div>
+
+            <div class="video-grid" id="videoGrid">
+                <!-- 视频卡片将通过JavaScript动态加载 -->
+            </div>
+
+            <div class="video-nav">
+                <button class="nav-button" id="prevButton" disabled>Previous</button>
+                <button class="nav-button" id="nextButton">Next</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2024 Chaoyu Zhang. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 示例视频数据
+        const videos = [
+            {
+                id: 'VIDEO_ID_1',
+                title: 'Performance Title 1',
+                description: 'Description of the performance and style',
+                date: 'March 2024'
+            },
+            {
+                id: 'VIDEO_ID_2',
+                title: 'Performance Title 2',
+                description: 'Description of the performance and style',
+                date: 'February 2024'
+            },
+            {
+                id: 'VIDEO_ID_3',
+                title: 'Performance Title 3',
+                description: 'Description of the performance and style',
+                date: 'January 2024'
+            },
+            // 可以添加更多视频...
+        ];
+
+        const videosPerPage = 3;
+        let currentPage = 0;
+
+        function createVideoCard(video) {
+            return `
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/${video.id}" 
+                                title="${video.title}" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <h3>${video.title}</h3>
+                        <p>${video.description}</p>
+                        <div class="video-date">${video.date}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function displayVideos() {
+            const startIndex = currentPage * videosPerPage;
+            const endIndex = startIndex + videosPerPage;
+            const pageVideos = videos.slice(startIndex, endIndex);
+            
+            const videoGrid = document.getElementById('videoGrid');
+            videoGrid.innerHTML = pageVideos.map(createVideoCard).join('');
+
+            // 更新按钮状态
+            document.getElementById('prevButton').disabled = currentPage === 0;
+            document.getElementById('nextButton').disabled = endIndex >= videos.length;
+        }
+
+        document.getElementById('prevButton').addEventListener('click', () => {
+            if (currentPage > 0) {
+                currentPage--;
+                displayVideos();
+            }
+        });
+
+        document.getElementById('nextButton').addEventListener('click', () => {
+            const maxPage = Math.ceil(videos.length / videosPerPage) - 1;
+            if (currentPage < maxPage) {
+                currentPage++;
+                displayVideos();
+            }
+        });
+
+        // 初始显示
+        displayVideos();
+    </script>
+</body>
+</html> 

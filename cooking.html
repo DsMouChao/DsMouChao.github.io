@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cooking - Chaoyu Zhang</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: #f8f8f8;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
+            padding-top: 80px;
+        }
+
+        .cooking-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            min-height: calc(100vh - 80px - 60px);
+        }
+
+        .cooking-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-top: 1rem;
+        }
+
+        .cooking-title h1 {
+            font-size: 2.5rem;
+            color: #00274C;
+            margin-bottom: 1rem;
+        }
+
+        .cooking-title p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .recipe-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 500px;
+            position: relative;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .recipe-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .recipe-card.flipped .recipe-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .recipe-front, .recipe-back {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            background: white;
+        }
+
+        .recipe-back {
+            transform: rotateY(180deg);
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+
+        .recipe-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .recipe-info {
+            padding: 1rem;
+            height: calc(100% - 180px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .recipe-info h3 {
+            color: #00274C;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .recipe-info p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 0.8rem;
+            flex: 1;
+        }
+
+        .recipe-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .recipe-tag {
+            background: #f0f0f0;
+            color: #666;
+            padding: 0.25rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .recipe-date {
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        .recipe-ingredients, .recipe-instructions {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .recipe-ingredients h4, .recipe-instructions h4 {
+            color: #00274C;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .recipe-ingredients ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .recipe-ingredients li {
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        .recipe-instructions ol {
+            padding-left: 1.5rem;
+        }
+
+        .recipe-instructions li {
+            margin-bottom: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .recipe-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .nav-button {
+            background: #00274C;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .nav-button:hover {
+            background: #004080;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .cooking-container {
+                padding: 1rem;
+            }
+
+            .cooking-title h1 {
+                font-size: 2rem;
+            }
+
+            .recipe-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="name">Chaoyu Zhang</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="resume.html">Resume</a>
+            <a href="academic.html">Academic</a>
+            <a href="projects.html">Projects</a>
+            <a href="hobbies.html" class="active">Hobbies</a>
+        </div>
+        <div class="nav-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <main>
+        <div class="cooking-container">
+            <div class="cooking-title">
+                <h1>Culinary Adventures</h1>
+                <p>My Journey Through Food and Cooking</p>
+            </div>
+
+            <div class="recipe-grid" id="recipeGrid">
+                <!-- Recipe cards will be loaded dynamically -->
+            </div>
+
+            <div class="recipe-nav">
+                <button class="nav-button" id="prevButton" disabled>Previous</button>
+                <button class="nav-button" id="nextButton">Next</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2024 Chaoyu Zhang. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Recipe data
+        const recipes = [
+            {
+                id: 1,
+                title: 'Braised Pork Belly',
+                description: 'A classic Chinese dish featuring tender, melt-in-your-mouth pork belly with rich, savory sauce.',
+                image: 'https://via.placeholder.com/400x300/00274C/ffffff?text=Braised+Pork+Belly',
+                tags: ['Chinese', 'Pork', 'Traditional'],
+                date: 'March 2024',
+                ingredients: [
+                    '500g pork belly',
+                    '2 tbsp soy sauce',
+                    '1 tbsp dark soy sauce',
+                    '2 tbsp sugar',
+                    '2 cloves garlic',
+                    '2 slices ginger',
+                    '2 star anise',
+                    '1 cinnamon stick',
+                    '2 cups water'
+                ],
+                instructions: [
+                    'Cut pork belly into 2-inch pieces',
+                    'Blanch pork in boiling water for 5 minutes',
+                    'Heat oil in a wok, add sugar until caramelized',
+                    'Add pork and stir-fry until golden',
+                    'Add seasonings and water',
+                    'Simmer for 1.5 hours until tender',
+                    'Reduce sauce until thickened'
+                ]
+            },
+            {
+                id: 2,
+                title: 'Steamed Sea Bass',
+                description: 'Fresh sea bass steamed with ginger and scallions, maintaining the natural sweetness of the fish.',
+                image: 'https://via.placeholder.com/400x300/00274C/ffffff?text=Steamed+Sea+Bass',
+                tags: ['Seafood', 'Steamed', 'Cantonese'],
+                date: 'February 2024',
+                ingredients: [
+                    '1 whole sea bass',
+                    '2 tbsp ginger',
+                    '2 scallions',
+                    '2 tbsp soy sauce',
+                    '1 tbsp sesame oil',
+                    'Salt to taste'
+                ],
+                instructions: [
+                    'Clean and scale the fish',
+                    'Stuff cavity with ginger and scallions',
+                    'Season with salt',
+                    'Steam for 12-15 minutes',
+                    'Top with hot oil and soy sauce',
+                    'Garnish with fresh scallions'
+                ]
+            },
+            {
+                id: 3,
+                title: 'Mapo Tofu',
+                description: 'A spicy Sichuan dish featuring silken tofu in a numbing and spicy sauce with minced pork.',
+                image: 'https://via.placeholder.com/400x300/00274C/ffffff?text=Mapo+Tofu',
+                tags: ['Sichuan', 'Vegetarian', 'Spicy'],
+                date: 'January 2024',
+                ingredients: [
+                    '400g silken tofu',
+                    '100g minced pork',
+                    '2 tbsp doubanjiang',
+                    '1 tbsp Sichuan peppercorns',
+                    '2 cloves garlic',
+                    '2 tbsp soy sauce',
+                    '1 cup chicken stock'
+                ],
+                instructions: [
+                    'Cut tofu into 1-inch cubes',
+                    'Brown minced pork in oil',
+                    'Add doubanjiang and garlic',
+                    'Add stock and bring to boil',
+                    'Add tofu and simmer for 5 minutes',
+                    'Thicken sauce with cornstarch',
+                    'Garnish with Sichuan peppercorns'
+                ]
+            }
+        ];
+
+        const recipesPerPage = 3;
+        let currentPage = 0;
+
+        function createRecipeCard(recipe) {
+            return `
+                <div class="recipe-card" onclick="this.classList.toggle('flipped')">
+                    <div class="recipe-card-inner">
+                        <div class="recipe-front">
+                            <img src="${recipe.image}" alt="${recipe.title}" class="recipe-image">
+                            <div class="recipe-info">
+                                <h3>${recipe.title}</h3>
+                                <p>${recipe.description}</p>
+                                <div class="recipe-tags">
+                                    ${recipe.tags.map(tag => `<span class="recipe-tag">${tag}</span>`).join('')}
+                                </div>
+                                <div class="recipe-date">${recipe.date}</div>
+                            </div>
+                        </div>
+                        <div class="recipe-back">
+                            <h3>${recipe.title}</h3>
+                            <div class="recipe-ingredients">
+                                <h4>Ingredients</h4>
+                                <ul>
+                                    ${recipe.ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
+                                </ul>
+                            </div>
+                            <div class="recipe-instructions">
+                                <h4>Instructions</h4>
+                                <ol>
+                                    ${recipe.instructions.map(instruction => `<li>${instruction}</li>`).join('')}
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function displayRecipes() {
+            const startIndex = currentPage * recipesPerPage;
+            const endIndex = startIndex + recipesPerPage;
+            const pageRecipes = recipes.slice(startIndex, endIndex);
+            
+            const recipeGrid = document.getElementById('recipeGrid');
+            recipeGrid.innerHTML = pageRecipes.map(createRecipeCard).join('');
+
+            // Update button states
+            document.getElementById('prevButton').disabled = currentPage === 0;
+            document.getElementById('nextButton').disabled = endIndex >= recipes.length;
+        }
+
+        document.getElementById('prevButton').addEventListener('click', () => {
+            if (currentPage > 0) {
+                currentPage--;
+                displayRecipes();
+            }
+        });
+
+        document.getElementById('nextButton').addEventListener('click', () => {
+            const maxPage = Math.ceil(recipes.length / recipesPerPage) - 1;
+            if (currentPage < maxPage) {
+                currentPage++;
+                displayRecipes();
+            }
+        });
+
+        // Initial display
+        displayRecipes();
+    </script>
+</body>
+</html>

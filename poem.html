@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poetry Collection - Chaoyu Zhang</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: #f8f8f8;
+            position: relative;
+        }
+
+        .poetry-container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            min-height: calc(100vh - 80px);
+            padding: 2rem;
+            gap: 4rem;
+        }
+
+        .poetry-container::before,
+        .poetry-container::after {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .poetry-container::before {
+            top: 2rem;
+            left: 2rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 20c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%2300274C'/%3E%3Cpath d='M30 30c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%2300274C'/%3E%3Cpath d='M70 30c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%2300274C'/%3E%3Cpath d='M40 40c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%2300274C'/%3E%3Cpath d='M60 40c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%2300274C'/%3E%3Cpath d='M50 50c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%2300274C'/%3E%3C/svg%3E");
+        }
+
+        .poetry-container::after {
+            bottom: 2rem;
+            right: 2rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 20c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%23FFCB05'/%3E%3Cpath d='M30 30c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%23FFCB05'/%3E%3Cpath d='M70 30c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%23FFCB05'/%3E%3Cpath d='M40 40c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%23FFCB05'/%3E%3Cpath d='M60 40c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%23FFCB05'/%3E%3Cpath d='M50 50c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%23FFCB05'/%3E%3C/svg%3E");
+        }
+
+        .poetry-title {
+            position: relative;
+            flex: 0 0 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 2rem;
+            border-right: 2px solid #00274C;
+        }
+
+        .poetry-title::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 20c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%2300274C'/%3E%3Cpath d='M30 30c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%2300274C'/%3E%3Cpath d='M70 30c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%2300274C'/%3E%3Cpath d='M40 40c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%2300274C'/%3E%3Cpath d='M60 40c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%2300274C'/%3E%3Cpath d='M50 50c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%2300274C'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        .poem-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 20c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%2300274C'/%3E%3Cpath d='M30 30c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%2300274C'/%3E%3Cpath d='M70 30c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%2300274C'/%3E%3Cpath d='M40 40c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%2300274C'/%3E%3Cpath d='M60 40c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%2300274C'/%3E%3Cpath d='M50 50c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%2300274C'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        .poem-back::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M50 20c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%23FFCB05'/%3E%3Cpath d='M30 30c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%23FFCB05'/%3E%3Cpath d='M70 30c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%23FFCB05'/%3E%3Cpath d='M40 40c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%23FFCB05'/%3E%3Cpath d='M60 40c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%23FFCB05'/%3E%3Cpath d='M50 50c-2 0-4 1-4 3s2 3 4 3 4-1 4-3-2-3-4-3zm0 5c-1 0-2-1-2-2s1-2 2-2 2 1 2 2-1 2-2 2z' fill='%23FFCB05'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        .poetry-title h1 {
+            font-size: 2.5rem;
+            color: #00274C;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .poetry-title p {
+            font-size: 1.2rem;
+            color: #666;
+        }
+
+        .poem-display {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .poem-card {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 400px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .poem-card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #00274C, #FFCB05);
+            border-radius: 20px;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .poem-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .poem-card-inner.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .poem-front, .poem-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #00274C #f0f0f0;
+        }
+
+        .poem-front::-webkit-scrollbar,
+        .poem-back::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .poem-front::-webkit-scrollbar-track,
+        .poem-back::-webkit-scrollbar-track {
+            background: #f0f0f0;
+            border-radius: 3px;
+        }
+
+        .poem-front::-webkit-scrollbar-thumb,
+        .poem-back::-webkit-scrollbar-thumb {
+            background: #00274C;
+            border-radius: 3px;
+        }
+
+        .poem-front::-webkit-scrollbar-thumb:hover,
+        .poem-back::-webkit-scrollbar-thumb:hover {
+            background: #004080;
+        }
+
+        .poem-front {
+            background: #fff;
+            border: 2px solid #00274C;
+        }
+
+        .poem-back {
+            background: #00274C;
+            color: #FFCB05;
+            transform: rotateY(180deg);
+        }
+
+        .poem-date {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            z-index: 1;
+            backdrop-filter: blur(5px);
+        }
+
+        .poem-back .poem-date {
+            background: rgba(0, 39, 76, 0.95);
+            color: #FFCB05;
+        }
+
+        .poem-title, .translation-title {
+            position: absolute;
+            top: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            text-align: center;
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .poem-title {
+            font-size: 1.8rem;
+            color: #00274C;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .poem-back .poem-title {
+            background: rgba(0, 39, 76, 0.95);
+            color: #FFCB05;
+        }
+
+        .poem-content {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            white-space: pre-line;
+            padding: 5rem 1rem 1rem 1rem;
+            text-align: center;
+        }
+
+        .translation-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .translation-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            padding: 5rem 1rem 1rem 1rem;
+            text-align: center;
+        }
+
+        .poem-nav {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .nav-button {
+            background: #00274C;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .nav-button:hover {
+            background: #004080;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 768px) {
+            .poetry-container {
+                flex-direction: column;
+                padding: 1rem;
+                gap: 2rem;
+            }
+
+            .poetry-title {
+                flex: none;
+                border-right: none;
+                border-bottom: 2px solid #00274C;
+                padding: 1rem;
+                text-align: center;
+                align-items: center;
+            }
+
+            .poetry-title h1 {
+                font-size: 2rem;
+            }
+
+            .poem-card {
+                height: 350px;
+            }
+
+            .poem-title {
+                font-size: 1.5rem;
+            }
+
+            .poem-content {
+                font-size: 1.1rem;
+            }
+
+            .translation-title {
+                font-size: 1.3rem;
+            }
+
+            .translation-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="name">Chaoyu Zhang</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="resume.html">Resume</a>
+            <a href="academic.html">Academic</a>
+            <a href="projects.html">Projects</a>
+            <a href="hobbies.html" class="active">Hobbies</a>
+        </div>
+        <div class="nav-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <main>
+        <div class="poetry-container">
+            <div class="poetry-title">
+                <h1>Poetry Collection</h1>
+                <p>by Chaoyu Zhang</p>
+            </div>
+
+            <div class="poem-display">
+                <div class="poem-card" id="poemCard">
+                    <!-- 诗歌卡片将通过 JavaScript 动态添加 -->
+                </div>
+                <div class="poem-nav">
+                    <button class="nav-button" id="prevPoem" disabled>Previous</button>
+                    <button class="nav-button" id="nextPoem">Next</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2024 Chaoyu Zhang. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 诗歌数据
+        const poems = [
+            {
+                date: "July 2020",
+                title: "阶前月",
+                content: `月华轻洒染侵阶，
+                柔云娇娇为伊斜。
+                衡雁啼飞千嶂里，
+                归梦难却丁香结。`,
+                translationTitle: "Moonlit Longing",
+                translationText: `Moonlight drapes the steps with silver hue,  
+                Soft clouds drift gently, yearning too.  
+                Wild geese cry past a thousand peaks,  
+                While dreams of home the lilac seeks.  `
+            },
+            {
+                date: "July 2020",
+                title: "唐多令*急风无月夜",
+                content: `急风无月夜，夏凉好似秋。窗外虫，骤雨也不休。都道雨声催人睡，这次却，愁上头。
+
+碧云空离合，江水恨东流。今日花，又有几天
+红？血马到死终消瘦，都付与，他人游。`,
+                translationTitle: "A Moonless Night of Raging Winds",
+                translationText: `The winds howl fierce, no moon above,  
+The summer's chill feels fall, my love.  
+The rain keeps pouring, bugs still cry,  
+It should bring sleep, yet tears run dry.  
+They say the rain brings dreams so deep,  
+But all it brings — is sleepless grief.
+
+The clouds drift past, they part, they stray,  
+The river runs its heart away.  
+How long can flowers bloom so red?  
+By dawn, their petals pale and dead.  
+The crimson steed, once proud and free,  
+Now fades — while strangers ride with glee.`
+            },
+            {
+                date: "Jan 2020",
+                title: "乐山大佛",
+                content: `凌云峰里怀东坡，
+                三江交汇见古佛。
+                镇祟除灾慈眉目，
+                一代又有一代磨。`,
+                translationTitle: "The Leshan Buddha",
+                translationText: `At Lingyun Peak, I think of Su,  
+Where rivers meet and skies are blue.  
+With gentle eyes, the Buddha stands,  
+Disasters calmed by mercy's hands.  
+
+Each age has carved, then passed away,  
+Their hopes in stone still speak today.  
+Generations came and wore,  
+He stands in peace — forevermore.`
+            },
+            {
+                date: "Jan 2020",
+                title: "登峨眉见背夫有感",
+                content: `青山烟笼不见峰，金顶雪埋无神踪。
+背夫代代上峨眉，竹杖背篓百年承。
+普贤菩萨山上立，一砖一瓦皆其功。
+人间种种千斤担，天下谁人不负重。`,
+                translationTitle: "Porters of Mount Emei",
+                translationText: `The peaks are veiled in mist and cloud,  
+The Golden Summit lost, enshroud.  
+For generations, porters climb,  
+With bamboo poles through endless time.  
+
+Samantabhadra stands so high,  
+Each stone they raised beneath the sky.  
+The weight of life, we all must bear,  
+Who walks this world without a care?`
+
+            },
+            {
+                date: "Jan 2020",
+                title: "青城山遇道人问八字",
+                content: `青城山头青林翠，
+                三清宫前三火烟。
+                道人说我命缺水，
+                恰好不想要姻缘。`,
+                translationTitle: "Fate Told on Mount Qingcheng",
+                translationText: `At Qingcheng's peak, the forests shine,  
+Before the shrine, the incense line.  
+The priest declared, "Your fate lacks rain,"  
+"Then love," I smiled, "I won't attain." `
+            },
+            {
+                date: "Jan 2020",
+                title: "青城山记",
+                content: `临近都江堰流，坐享天府国秀。川蜀四大名山，尊为道家源头。丹鹤唳于林间，苍龙卧于泉中。三十六峰圣人，七十二洞仙踪。山峦叠叠，环峙如城。峻峰险险，风景妖诱。白果
+炖鸡，洞天乳酒。千年古树，万里云游。
+嗟夫，自汉道陵，名人大士，百姓众生，求仙问道，多聚于此。抛红尘而无欲，弃过往而无求，六根清净，万虑皆空。然千百年来，几人如此，了尽喜愁。`,
+                translationTitle: "Ode to Mount Qingcheng",
+                translationText: `Near Dujiang's mighty flow,  
+Heaven's land where riches grow.  
+Among Sichuan's famed sacred four,  
+The Taoist roots revered of yore.  
+
+Crimson cranes cry through the pine,  
+While dragons rest by spring divine.  
+Thirty-six peaks the sages claim,  
+Seventy-two caves bear immortals' name.  
+
+Mountains rise and circle round,  
+Like walls that guard this hallowed ground.  
+Steep cliffs lure hearts with beauty rare,  
+Tempting souls to linger there.  
+
+Chicken stew with ginkgo sweet,  
+Cave-born wine, a mortal treat.  
+Ancient trees through ages stand,  
+Clouds drift past from distant land.  
+
+Alas! Since Han, the seekers came,  
+The wise, the poor — they're all the same.  
+To chase the Way, let dust depart,  
+Desires fade from mortal heart.  
+
+Yet through the endless, fleeting years,  
+How few have shed both joy and tears. `
+            },
+            {
+                date: "Sep 2020",
+                title: "西南游",
+                content: `自天府西行，后南下而入藏。翻云翳之群山，破先惊之白浪。山道参差崎岖，常崖边悬空而行，虎豹不能下，大鱼不敢上，鸿鹄黄鹤亦不得过。
+
+复向西几千里也，景色大变焉。半山阴雨半山晴，艳阳底下听雷惊。上有穹天低云飘飘如仙，下有石山丘陵钩栈相连。骏马飞驰于浅草之上，牦牛食野于溪流之边。望天地之宽广,哀吾生之微渺，愿寄身于自然，得长存于人间。
+
+复西行，有人焉。哈达以迎客，青棵以款固。居石房，着长袍，襟有金，腰龙刀。白日驱马射雕，夜晚围火歌跳。油酥茶，青稞酒，撕牛肉，糌粑糕。其亦人人信佛，故广修寺庙，壮气恢弘，直耸云霄。
+
+有神山，名日仙乃日。巍峨如佛，端坐莲上。受居民之朝拜，享群山之拥绕。自山脚而上，古树葱葱，牛马食草。山路难行，湍流断路。上有悬石欲坠，下有暗石欲空。崖下万骨，尽是登山寻佛之人。至山顶，白雪皑皑而终年不化，绿藓蔓蔓而终年不散。湖水至清而神鱼不游，泊水至净而仙女划舟。彩鸟于飞，岩羚成群。凤凰啼鸣，山风化音。乃仙境也！
+
+故感：何身处仙境才觉仙境之存哉？若心中有神，则处处皆仙境邪？若心中无欲，则人人成佛邪？若人人成佛，则香巴拉现世邪？`,
+                translationTitle: "Journey West — Into the Realm of Gods",
+                translationText: `West from Tianfu I did stray,  
+Then south, where Tibet's mountains lay.  
+Through clouds that shroud the towering spires,  
+Past roaring waves and thundered fires.  
+
+The path winds high on cliffs so sheer,  
+Where beasts dare not and birds steer clear.  
+Tigers fall short, great fish retreat,  
+Not even swans their flight complete.  
+
+Further west, the lands unfold,  
+The skies divide — half rain, half gold.  
+Beneath the sun, the thunders rise,  
+While clouds drift low across the skies.  
+
+Stone hills and ridges, vast they sprawl,  
+The grasslands wide, the heavens tall.  
+Steeds gallop free where rivers gleam,  
+Yaks graze the banks in peaceful dream.  
+
+I gaze upon this endless span,  
+And mourn the fleeting life of man.  
+Would that my soul to nature flee,  
+And dwell in earth's eternity.  
+
+Westward still, there dwell the kind,  
+With hada gifts and barley wine.  
+In stone-built homes, in robes of pride,  
+With golden seams and blades at side.  
+
+By day they ride and hunt the sky,  
+By night they sing as flames leap high.  
+Butter tea and barley brew,  
+They tear the beef, the tsampa too.  
+
+Their hearts with Buddha's light are blessed,  
+They build great temples to the west.  
+Majestic halls that pierce the cloud,  
+Where monks in crimson robes are bowed.  
+
+There stands a peak, Xian Nai Ri named,  
+Like Buddha vast, in snow enshrined.  
+It draws the prayer from every soul,  
+And drinks the love of peaks that roll.  
+
+The path grows steep, the torrents wild,  
+Ancient trees and beasts run mild.  
+Above, the hanging rocks may fall,  
+Below, the hidden stones appall.  
+
+Bones mark the cliffs where pilgrims bled,  
+Their dreams of Buddha left them dead.  
+Yet at the peak, snow pure and wide,  
+Green moss like silk on every side.  
+
+The lake so clear, no fish shall glide,  
+The waters still, as fairies ride.  
+Bright birds soar high, the chamois roam,  
+The phoenix sings, the winds intone.  
+A realm of gods, a heaven's dome.  
+
+And thus I sigh —  
+Must one reach heaven to know it true?  
+If gods dwell here, may they dwell in you.  
+If hearts know peace and cast off pain,  
+Then Buddha's light on all shall reign.  
+If all are Buddha, free of strife,  
+Shambhala blooms — in mortal life.
+  `
+            },
+
+        ];
+
+        let currentPoemIndex = 0;
+
+        // 创建诗歌卡片
+        function createPoemCard(poem) {
+            return `
+                <div class="poem-card-inner">
+                    <div class="poem-front">
+                        <div class="poem-date">${poem.date}</div>
+                        <h2 class="poem-title">${poem.title}</h2>
+                        <div class="poem-content">${poem.content}</div>
+                    </div>
+                    <div class="poem-back">
+                        <h3 class="translation-title">${poem.translationTitle}</h3>
+                        <div class="translation-text">${poem.translationText}</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // 显示当前诗歌
+        function displayPoem() {
+            const poemCard = document.getElementById('poemCard');
+            poemCard.innerHTML = createPoemCard(poems[currentPoemIndex]);
+            
+            // 更新导航按钮状态
+            document.getElementById('prevPoem').disabled = currentPoemIndex === 0;
+            document.getElementById('nextPoem').disabled = currentPoemIndex === poems.length - 1;
+
+            // 添加点击事件监听器
+            const cardInner = poemCard.querySelector('.poem-card-inner');
+            cardInner.addEventListener('click', () => {
+                cardInner.classList.toggle('flipped');
+            });
+        }
+
+        // 导航按钮事件
+        document.getElementById('prevPoem').addEventListener('click', () => {
+            if (currentPoemIndex > 0) {
+                currentPoemIndex--;
+                displayPoem();
+            }
+        });
+
+        document.getElementById('nextPoem').addEventListener('click', () => {
+            if (currentPoemIndex < poems.length - 1) {
+                currentPoemIndex++;
+                displayPoem();
+            }
+        });
+
+        // 初始化显示
+        displayPoem();
+    </script>
+</body>
+</html>

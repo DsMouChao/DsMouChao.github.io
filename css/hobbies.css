@@ -1,0 +1,253 @@
+.hobbies-container {
+    max-width: 1200px;
+    margin: 80px auto 40px;
+    padding: 20px;
+}
+
+.hobbies-header {
+    text-align: center;
+    padding: 60px 0;
+    background: linear-gradient(135deg, var(--michigan-blue) 0%, #003366 100%);
+    color: white;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.hobbies-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: var(--michigan-maize);
+}
+
+.hobbies-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* 爱好卡片网格 */
+.hobbies-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+  }
+  
+  @media (max-width: 768px) {
+    .hobbies-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+.hobby-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    text-decoration: none;
+}
+
+.hobby-card:hover {
+    transform: translateY(-10px);
+}
+
+.hobby-icon {
+    width: 60px;
+    height: 60px;
+    background-color: var(--michigan-blue);
+    color: var(--michigan-maize);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.hobby-icon i {
+    font-size: 24px;
+}
+
+.hobby-card h3 {
+    color: var(--michigan-blue);
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.hobby-card p {
+    color: #666;
+    text-align: center;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+/* 摄影画廊 */
+.hobby-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.hobby-gallery img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.hobby-gallery img:hover {
+    transform: scale(1.1);
+}
+
+/* 书籍列表 */
+.book-list {
+    margin-top: 20px;
+}
+
+.book-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.book-title {
+    display: block;
+    color: var(--michigan-blue);
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.book-author {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* 音乐播放器 */
+.music-player {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.now-playing {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.song-title {
+    display: block;
+    color: var(--michigan-blue);
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.artist {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.player-controls i {
+    font-size: 20px;
+    color: var(--michigan-blue);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.player-controls i:hover {
+    color: var(--michigan-maize);
+}
+
+/* 活动统计 */
+.activity-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--michigan-blue);
+}
+
+.stat-label {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* 旅行地图 */
+.travel-section {
+    margin-top: 60px;
+}
+
+.travel-section h2 {
+    text-align: center;
+    color: var(--michigan-blue);
+    margin-bottom: 30px;
+}
+
+.travel-map {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.map-placeholder {
+    height: 400px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+}
+
+.map-placeholder i {
+    font-size: 48px;
+    color: var(--michigan-blue);
+    margin-bottom: 15px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .hobbies-container {
+        margin: 60px 10px 20px;
+        padding: 15px;
+    }
+
+    .hobbies-header {
+        padding: 40px 20px;
+    }
+
+    .hobbies-header h1 {
+        font-size: 2rem;
+    }
+
+    .hobby-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .hobby-gallery img {
+        height: 200px;
+    }
+
+    .activity-stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+} 

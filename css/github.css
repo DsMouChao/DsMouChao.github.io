@@ -1,0 +1,236 @@
+.github-container {
+    max-width: 1200px;
+    margin: 80px auto 40px;
+    padding: 20px;
+}
+
+/* GitHub 个人资料部分 */
+.github-header {
+    background: linear-gradient(135deg, var(--michigan-blue) 0%, #003366 100%);
+    border-radius: 10px;
+    padding: 40px 20px;
+    text-align: center;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.github-profile {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.github-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid var(--michigan-maize);
+    margin-bottom: 20px;
+}
+
+.github-profile h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: var(--michigan-maize);
+}
+
+.github-username {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.github-stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat i {
+    font-size: 24px;
+    color: var(--michigan-maize);
+    margin-bottom: 10px;
+}
+
+.stat-number {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* 仓库筛选器 */
+.repo-filters {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 20px;
+    border: 2px solid var(--michigan-blue);
+    background: transparent;
+    color: var(--michigan-blue);
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background-color: var(--michigan-blue);
+    color: white;
+}
+
+/* 仓库网格 */
+.repos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.repo-card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.repo-card:hover {
+    transform: translateY(-5px);
+}
+
+.repo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.repo-header h3 {
+    color: var(--michigan-blue);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.repo-stats {
+    display: flex;
+    gap: 15px;
+    color: #666;
+}
+
+.repo-stats span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.repo-description {
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.repo-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.repo-language {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.language-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--michigan-blue);
+}
+
+.repo-link {
+    color: var(--michigan-blue);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.3s ease;
+}
+
+.repo-link:hover {
+    color: var(--michigan-maize);
+}
+
+/* 贡献日历 */
+.contribution-calendar {
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.contribution-calendar h2 {
+    color: var(--michigan-blue);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(52, 1fr);
+    gap: 3px;
+    padding: 20px 0;
+}
+
+.calendar-day {
+    width: 10px;
+    height: 10px;
+    background-color: #ebedf0;
+    border-radius: 2px;
+}
+
+.calendar-day[data-level="1"] { background-color: #9be9a8; }
+.calendar-day[data-level="2"] { background-color: #40c463; }
+.calendar-day[data-level="3"] { background-color: #30a14e; }
+.calendar-day[data-level="4"] { background-color: #216e39; }
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .github-container {
+        margin: 60px 10px 20px;
+        padding: 15px;
+    }
+
+    .github-profile h1 {
+        font-size: 2rem;
+    }
+
+    .github-stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .repos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .calendar-grid {
+        grid-template-columns: repeat(26, 1fr);
+    }
+} 
