@@ -5,124 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photography - Chaoyu Zhang</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/photography.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .category-container {
-            max-width: 100%;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .category-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .category-title {
-            font-size: 2.5rem;
-            color: #00274C;
-            margin-bottom: 1rem;
-        }
-
-        .category-description {
-            font-size: 1.2rem;
-            color: #666;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            padding: 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .category-card {
-            position: relative;
-            height: 300px;
-            border-radius: 15px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            text-decoration: none;
-            color: #fff;
-        }
-
-        .category-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .category-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .category-card:hover .category-image {
-            transform: scale(1.05);
-        }
-
-        .category-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 2rem;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .category-card:hover .category-overlay {
-            transform: translateY(0);
-        }
-
-        .category-name {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .category-count {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        @media (max-width: 768px) {
-            .category-title {
-                font-size: 2rem;
-            }
-
-            .category-description {
-                font-size: 1rem;
-            }
-
-            .category-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .category-card {
-                height: 250px;
-            }
-
-            .category-overlay {
-                transform: translateY(0);
-                padding: 1.5rem;
-            }
-
-            .category-name {
-                font-size: 1.5rem;
-            }
-
-            .category-count {
-                font-size: 0.9rem;
-            }
-        }
-    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -142,47 +26,37 @@
     </nav>
 
     <main class="hero">
-        <div class="hero-content">
-            <h1 class="animate-text">Photography</h1>
-            <p class="animate-text-delay">Capturing moments through the lens</p>
-        </div>
-
         <div class="category-container">
-            <div class="category-header">
-                <h2 class="category-title">Photo Categories</h2>
-                <p class="category-description">Explore different aspects of photography</p>
-            </div>
-
             <div class="category-grid">
-                <a href="photography-city.html" class="category-card">
-                    <img src="images/photo1.jpg" alt="Urban Photography" class="category-image">
-                    <div class="category-overlay">
-                        <h3 class="category-name">Urban Photography</h3>
-                        <p class="category-count">12 photos</p>
-                    </div>
-                </a>
-
                 <a href="photography-nature.html" class="category-card">
                     <img src="images/GrandPrismaticSpring.jpg" alt="Nature Photography" class="category-image">
                     <div class="category-overlay">
                         <h3 class="category-name">Nature Photography</h3>
-                        <p class="category-count">15 photos</p>
+                        <p class="category-count">12 photos</p>
                     </div>
                 </a>
 
-                <a href="photography-animals.html" class="category-card">
-                    <img src="images/photo3.jpg" alt="Animal Photography" class="category-image">
+                <a href="photography-city.html" class="category-card">
+                    <img src="images/photo3.jpg" alt="Urban Photography" class="category-image">
                     <div class="category-overlay">
-                        <h3 class="category-name">Animal Photography</h3>
+                        <h3 class="category-name">Urban Photography</h3>
                         <p class="category-count">8 photos</p>
                     </div>
                 </a>
 
+                <a href="photography-animals.html" class="category-card">
+                    <img src="images/photo1.jpg" alt="Animal Photography" class="category-image">
+                    <div class="category-overlay">
+                        <h3 class="category-name">Animal Photography</h3>
+                        <p class="category-count">6 photos</p>
+                    </div>
+                </a>
+
                 <a href="photography-portrait.html" class="category-card">
-                    <img src="images/photo1.jpg" alt="Portrait Photography" class="category-image">
+                    <img src="images/photo2.jpg" alt="Portrait Photography" class="category-image">
                     <div class="category-overlay">
                         <h3 class="category-name">Portrait Photography</h3>
-                        <p class="category-count">10 photos</p>
+                        <p class="category-count">4 photos</p>
                     </div>
                 </a>
             </div>
@@ -197,5 +71,7 @@
         </div>
         <p>&copy; 2024 Chaoyu Zhang. All rights reserved.</p>
     </footer>
+
+    <script src="js/main.js"></script>
 </body>
 </html>
