@@ -1,166 +1,166 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resume - Personal Website</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/resume.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        @media (max-width: 768px) {
-            .contact-info {
-                padding-right: 2rem; /* 增加右侧padding */
-            }
-        }
-    </style>
-</head>
-<body>
-    <nav class="navbar">
-        <div class="nav-brand">
-            <span class="name">Chaoyu Zhang</span>
-        </div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="resume.html" class="active">Resume</a>
-            <a href="academic.html">Academic</a>
-            <a href="projects.html">Projects</a>
-            <a href="hobbies.html">Hobbies</a>
-        </div>
-        <div class="nav-toggle">
-            <i class="fas fa-bars"></i>
-        </div>
-    </nav>
-
-    <main class="resume-container">
-        <section class="resume-header">
-            <div class="profile-info">
-                <h1>Chaoyu Zhang</h1>
-                <p class="title">Machine Learning Engineer & Data Scientist & Web Design Engineer</p>
-                <div class="contact-info">
-                    <p><i class="fas fa-envelope"></i> charliezhchyu@gmail.com</p>
-                    <p><i class="fas fa-phone"></i> (614) 906-4520</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Ann Arbor, MI</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="resume-section">
-            <h2><i class="fas fa-graduation-cap"></i> Education</h2>
-            <div class="education-item">
-                <h3>Bachelor of Science in Data Science</h3>
-                <p class="school">University of Wisconsin, Madison</p>
-                <p class="date">Sep. 2022 - Dec. 2024</p>
-                <p>GPA: 3.961/4.0</p>
-            </div>
-            <div class="education-item">
-                <h3>Major in Mathematics</h3>
-                <p class="school">The Ohio State University</p>
-                <p class="date">Sep. 2020 - May 2022</p>
-                <p>GPA: 3.767/4.0</p>
-            </div>
-            <div class="education-details">
-                <p><strong>Courses:</strong> Java, R, Python, MySQL, NoSQL, Bash Script, Machine Learning, Deep Learning, Optimization, Distributed Computing, Data Structure and Algorithm</p>
-                <p><strong>Honors:</strong> Dean's List from OSU (3 times), Dean's List from UW-Madison (3 times)</p>
-            </div>
-        </section>
-
-        <section class="resume-section">
-            <h2><i class="fas fa-book"></i> Publication</h2>
-            <div class="publication-item">
-                <p>Zhang, Chaoyu. (2023). Research on British Epidemic Forecast Based on SIR model. Theoretical and Natural Science. 6. 35-38. 10.54254/2753-8818/6/20230135.</p>
-            </div>
-        </section>
-
-        <section class="resume-section">
-            <h2><i class="fas fa-microscope"></i> Research</h2>
-            <div class="experience-item">
-                <h3>Using Stable Diffusion to Generate New Fusion Devices</h3>
-                <p class="company">Research Assistant, UWPlasma Group, University of Wisconsin, Madison</p>
-                <p class="date">June 2024 - Present</p>
-                <p class="supervisor">Supervised by Dr. Rogerio Jorge</p>
-                <ul>
-                    <li>Used CycleGAN, Diffusion and regression models to transform suboptimal stellarator configurations into optimized ones</li>
-                    <li>Integrated DESC and QSC solvers to validate the configurations by computing physical outputs like iota, magnetic field variance, and gradients of magnetic pressure</li>
-                    <li>Reduced magnetic field variance and improved axis elongation by applying a custom loss function that minimizes the difference between DESC and QSC output</li>
-                    <li>Replaced the QSC framework with a ResNet model to rapidly predict near-axis solutions, achieving an 85% accuracy rate</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="resume-section">
-            <h2><i class="fas fa-briefcase"></i> Internship</h2>
-            <div class="experience-item">
-                <h3>Data Scientist Intern</h3>
-                <p class="company">Hasmo Consulting Company, Data Analytics Department</p>
-                <p class="date">June 2023</p>
-                <ul>
-                    <li>Designed a MySQL database schema to track user interactions and website analytics</li>
-                    <li>Appraised Google Analytics 4's functions and algorithms for analyzing user behavior on websites</li>
-                    <li>Gathered and analyzed websites with similar search terms to the target website for increasing its visibility and ranking with Google Trends and Uber Suggests</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="resume-section">
-            <h2><i class="fas fa-certificate"></i> Training Programs</h2>
-            <div class="experience-item">
-                <h3>Introduction to Modeling and Data Science in Biology</h3>
-                <p class="company">Instructed by Prof. Otto X. Cordero of MIT</p>
-                <p class="date">May 2021 - Sep. 2021</p>
-                <ul>
-                    <li>Modeled population dynamics using ODEs to study the relationship between population, cell size, nutrients, and ribosomes, and detect the steady state of half-life</li>
-                    <li><strong>Independent Research:</strong> Research on British Epidemic Forecast Based on SIR model</li>
-                    <li>Established a SIR model and determined the optimal parameters for the model to fit the real situation</li>
-                    <li>Gathered data on confirmed cases and vaccination rates from government websites with R</li>
-                    <li>Predicted the epidemic trends and proposed suggestions for adjusting restrictions on COVID-19</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="resume-section">
-            <h2><i class="fas fa-project-diagram"></i> Projects</h2>
-            <div class="experience-item">
-                <h3>Path Smoothing for Robotics Using Optimization Techniques</h3>
-                <p class="date">Nov. 2024</p>
-                <ul>
-                    <li>Developed a hybrid A* pathfinding and Quadratically Constrained Quadratic Program (QCQP) optimization model to smooth navigation paths on game maps, improving robotics natural movement</li>
-                    <li>Implemented smoothness and proximity loss functions in Julia using Ipopt, ensuring the path remains anchored to the original start and end points while maintaining obstacle avoidance</li>
-                    <li>Experimented with the model and demonstrated the optimization effect; conducted sensitivity analysis on model parameters to assess trade-offs between path smoothness and proximity</li>
-                </ul>
-            </div>
-
-            <div class="experience-item">
-                <h3>Raindrop Removal Algorithm Based on Diffusion Models and KAN</h3>
-                <p class="date">May 2024</p>
-                <ul>
-                    <li>Implemented a Kolmogorov-Arnold Network (KAN) to extract global and local features, addressing overlapping rain streaks</li>
-                    <li>Enhanced robustness by incorporating a diffusion model for iterative denoising, simulating raindrop interference and refining images via reverse diffusion</li>
-                    <li>Achieved superior results in Peak Signal-to-Noise Ratio (PSNR) and Structural Similarity Index Measure (SSIM)</li>
-                </ul>
-            </div>
-
-            <div class="experience-item">
-                <h3>Comparative Analysis of CNN Architectures with SENet Enhancement</h3>
-                <p class="date">Mar. 2024</p>
-                <ul>
-                    <li>Led a comparative analysis of CNN models (LeNet and ResNet) enhanced with SENet across different resolutions to optimize image classification</li>
-                    <li>Designed and executed 120 parallel training and testing jobs on MedMNIST using PyTorch and CHTC</li>
-                    <li>Achieved marked improvements in classification accuracy with SENet-enhanced models; ResNet's accuracy increased from 85% to 92% at minimal computational cost</li>
-                </ul>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="social-links">
-            <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-        </div>
-        <p>&copy; 2024 Chaoyu Zhang. All rights reserved.</p>
-    </footer>
-
-    <script src="js/main.js"></script>
-</body>
-</html> 
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Resume - Personal Website</title>
+     <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="css/resume.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+     <style>
+         @media (max-width: 768px) {
+             .contact-info {
+                 padding-right: 2rem; /* 增加右侧padding */
+             }
+         }
+     </style>
+ </head>
+ <body>
+     <nav class="navbar">
+         <div class="nav-brand">
+             <span class="name">Chaoyu Zhang</span>
+         </div>
+         <div class="nav-links">
+             <a href="index.html">Home</a>
+             <a href="resume.html" class="active">Resume</a>
+             <a href="academic.html">Academic</a>
+             <a href="projects.html">Projects</a>
+             <a href="hobbies.html">Hobbies</a>
+         </div>
+         <div class="nav-toggle">
+             <i class="fas fa-bars"></i>
+         </div>
+     </nav>
+ 
+     <main class="resume-container">
+         <section class="resume-header">
+             <div class="profile-info">
+                 <h1>Chaoyu Zhang</h1>
+                 <p class="title">Machine Learning Engineer & Data Scientist & Web Design Engineer</p>
+                 <div class="contact-info">
+                     <p><i class="fas fa-envelope"></i> charliezhchyu@gmail.com</p>
+                     <p><i class="fas fa-phone"></i> (614) 906-4520</p>
+                     <p><i class="fas fa-map-marker-alt"></i> Ann Arbor, MI</p>
+                 </div>
+             </div>
+         </section>
+ 
+         <section class="resume-section">
+             <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+             <div class="education-item">
+                 <h3>Bachelor of Science in Data Science</h3>
+                 <p class="school">University of Wisconsin, Madison</p>
+                 <p class="date">Sep. 2022 - Dec. 2024</p>
+                 <p>GPA: 3.961/4.0</p>
+             </div>
+             <div class="education-item">
+                 <h3>Major in Mathematics</h3>
+                 <p class="school">The Ohio State University</p>
+                 <p class="date">Sep. 2020 - May 2022</p>
+                 <p>GPA: 3.767/4.0</p>
+             </div>
+             <div class="education-details">
+                 <p><strong>Courses:</strong> Java, R, Python, MySQL, NoSQL, Bash Script, Machine Learning, Deep Learning, Optimization, Distributed Computing, Data Structure and Algorithm</p>
+                 <p><strong>Honors:</strong> Dean's List from OSU (3 times), Dean's List from UW-Madison (3 times)</p>
+             </div>
+         </section>
+ 
+         <section class="resume-section">
+             <h2><i class="fas fa-book"></i> Publication</h2>
+             <div class="publication-item">
+                 <p>Zhang, Chaoyu. (2023). Research on British Epidemic Forecast Based on SIR model. Theoretical and Natural Science. 6. 35-38. 10.54254/2753-8818/6/20230135.</p>
+             </div>
+         </section>
+ 
+         <section class="resume-section">
+             <h2><i class="fas fa-microscope"></i> Research</h2>
+             <div class="experience-item">
+                 <h3>Using Stable Diffusion to Generate New Fusion Devices</h3>
+                 <p class="company">Research Assistant, UWPlasma Group, University of Wisconsin, Madison</p>
+                 <p class="date">June 2024 - Present</p>
+                 <p class="supervisor">Supervised by Dr. Rogerio Jorge</p>
+                 <ul>
+                     <li>Used CycleGAN, Diffusion and regression models to transform suboptimal stellarator configurations into optimized ones</li>
+                     <li>Integrated DESC and QSC solvers to validate the configurations by computing physical outputs like iota, magnetic field variance, and gradients of magnetic pressure</li>
+                     <li>Reduced magnetic field variance and improved axis elongation by applying a custom loss function that minimizes the difference between DESC and QSC output</li>
+                     <li>Replaced the QSC framework with a ResNet model to rapidly predict near-axis solutions, achieving an 85% accuracy rate</li>
+                 </ul>
+             </div>
+         </section>
+ 
+         <section class="resume-section">
+             <h2><i class="fas fa-briefcase"></i> Internship</h2>
+             <div class="experience-item">
+                 <h3>Data Scientist Intern</h3>
+                 <p class="company">Hasmo Consulting Company, Data Analytics Department</p>
+                 <p class="date">June 2023</p>
+                 <ul>
+                     <li>Designed a MySQL database schema to track user interactions and website analytics</li>
+                     <li>Appraised Google Analytics 4's functions and algorithms for analyzing user behavior on websites</li>
+                     <li>Gathered and analyzed websites with similar search terms to the target website for increasing its visibility and ranking with Google Trends and Uber Suggests</li>
+                 </ul>
+             </div>
+         </section>
+ 
+         <section class="resume-section">
+             <h2><i class="fas fa-certificate"></i> Training Programs</h2>
+             <div class="experience-item">
+                 <h3>Introduction to Modeling and Data Science in Biology</h3>
+                 <p class="company">Instructed by Prof. Otto X. Cordero of MIT</p>
+                 <p class="date">May 2021 - Sep. 2021</p>
+                 <ul>
+                     <li>Modeled population dynamics using ODEs to study the relationship between population, cell size, nutrients, and ribosomes, and detect the steady state of half-life</li>
+                     <li><strong>Independent Research:</strong> Research on British Epidemic Forecast Based on SIR model</li>
+                     <li>Established a SIR model and determined the optimal parameters for the model to fit the real situation</li>
+                     <li>Gathered data on confirmed cases and vaccination rates from government websites with R</li>
+                     <li>Predicted the epidemic trends and proposed suggestions for adjusting restrictions on COVID-19</li>
+                 </ul>
+             </div>
+         </section>
+ 
+         <section class="resume-section">
+             <h2><i class="fas fa-project-diagram"></i> Projects</h2>
+             <div class="experience-item">
+                 <h3>Path Smoothing for Robotics Using Optimization Techniques</h3>
+                 <p class="date">Nov. 2024</p>
+                 <ul>
+                     <li>Developed a hybrid A* pathfinding and Quadratically Constrained Quadratic Program (QCQP) optimization model to smooth navigation paths on game maps, improving robotics natural movement</li>
+                     <li>Implemented smoothness and proximity loss functions in Julia using Ipopt, ensuring the path remains anchored to the original start and end points while maintaining obstacle avoidance</li>
+                     <li>Experimented with the model and demonstrated the optimization effect; conducted sensitivity analysis on model parameters to assess trade-offs between path smoothness and proximity</li>
+                 </ul>
+             </div>
+ 
+             <div class="experience-item">
+                 <h3>Raindrop Removal Algorithm Based on Diffusion Models and KAN</h3>
+                 <p class="date">May 2024</p>
+                 <ul>
+                     <li>Implemented a Kolmogorov-Arnold Network (KAN) to extract global and local features, addressing overlapping rain streaks</li>
+                     <li>Enhanced robustness by incorporating a diffusion model for iterative denoising, simulating raindrop interference and refining images via reverse diffusion</li>
+                     <li>Achieved superior results in Peak Signal-to-Noise Ratio (PSNR) and Structural Similarity Index Measure (SSIM)</li>
+                 </ul>
+             </div>
+ 
+             <div class="experience-item">
+                 <h3>Comparative Analysis of CNN Architectures with SENet Enhancement</h3>
+                 <p class="date">Mar. 2024</p>
+                 <ul>
+                     <li>Led a comparative analysis of CNN models (LeNet and ResNet) enhanced with SENet across different resolutions to optimize image classification</li>
+                     <li>Designed and executed 120 parallel training and testing jobs on MedMNIST using PyTorch and CHTC</li>
+                     <li>Achieved marked improvements in classification accuracy with SENet-enhanced models; ResNet's accuracy increased from 85% to 92% at minimal computational cost</li>
+                 </ul>
+             </div>
+         </section>
+     </main>
+ 
+     <footer>
+         <div class="social-links">
+             <a href="#" target="_blank"><i class="fab fa-github"></i></a>
+             <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+             <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+         </div>
+         <p>&copy; 2024 Chaoyu Zhang. All rights reserved.</p>
+     </footer>
+ 
+     <script src="js/main.js"></script>
+ </body>
+ </html> 
